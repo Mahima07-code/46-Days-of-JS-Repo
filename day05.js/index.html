@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS Truth Detector 🔍</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h2>🔍 JavaScript Truth Detector</h2>
+    <input type="text" id="val1" placeholder="Enter first value">
+    <input type="text" id="val2" placeholder="Enter second value">
+
+    <div>
+      <input type="radio" name="mode" id="loose" checked>
+      <label for="loose">Loose (==)</label>
+
+      <input type="radio" name="mode" id="strict">
+      <label for="strict">Strict (===)</label>
+    </div>
+
+    <button onclick="compareValues()">Compare</button>
+
+    <div class="result" id="result"></div>
+    <div class="types" id="types"></div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
