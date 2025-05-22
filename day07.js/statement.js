@@ -1,5 +1,5 @@
-let value = greet();
-console.log(value);
+
+console.log(greet());
 
 // Function Declaration (Statement)
 function greet() {
