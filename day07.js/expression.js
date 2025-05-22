@@ -8,8 +8,7 @@ console.log(sayHi());           // ReferenceError: Cannot access 'sayHi' before 
 const sayHi = function() {
   return "Hi";
 };
-let value = sayHi();
-console
+
 
 // EXPLANATION :-
 
