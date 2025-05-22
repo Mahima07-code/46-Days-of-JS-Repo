@@ -1,3 +1,6 @@
+let value = greet();
+console.log(value);
+
 // Function Declaration (Statement)
 function greet() {
   return "Hello";
