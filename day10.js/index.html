@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bouncing Ball Animation</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: radial-gradient(circle,rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+    }
+    #ball {
+      width: 100px;
+      height: 100px;
+      background-color: darkmagenta;
+      border-radius: 50%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    #controls {
+      display: flex;
+      justify-content: center;
+      margin: 20px;
+    }
+    button {
+      margin-right: 5px;
+      padding: 10px;
+      font-size:15px;
+      background-color: rgb(75, 75, 75);
+      color:rgb(234, 199, 156);
+      border-radius: 10px;
+      box-shadow:10px 10px 10px ;
+    }
+  </style>
+</head>
+<body>
+  <div id="ball"></div>
+  <div id="controls">
+    <button onclick="startAnimation('timeout')">Start with setTimeout</button>
+    <button onclick="startAnimation('interval')">Start with setInterval</button>
+    <button onclick="startAnimation('raf')">Start with requestAnimationFrame</button>
+    <button onclick="stopAnimation()">Stop</button>
+  </div>
+  <script src="animation.js"></script>
+</body>
+</html>
+
