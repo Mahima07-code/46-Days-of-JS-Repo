@@ -1,3 +1,5 @@
+// Example to explain the concept of setTimeout
+
 console.log("1: Order chai");
 
 setTimeout(() => {
