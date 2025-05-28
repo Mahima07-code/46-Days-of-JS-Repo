@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Render Tree Example</title>
+  <style>
+    .hidden {
+      display: none;
+    }
+    .visible {
+      color: blue;
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="visible">This is visible.</div>
+  <div class="hidden">This is hidden.</div>
+</body>
+</html>
+
+<!-- Analysis:
+
+DOM Construction:
+The browser parses the HTML to create the DOM tree, which includes both <div> elements.
+
+CSSOM Construction:
+The browser parses the CSS to create the CSSOM, noting the styles for .hidden and .visible classes.
+
+Render Tree Construction:
+The browser combines the DOM and CSSOM to form the Render Tree.
+The <div> with class hidden is excluded from the Render Tree because display: none removes it from the visual flow.
+The <div> with class visible is included in the Render Tree with its computed styles (blue color and 20px font size). -->
+
+  
+  
+  
+  <!-- Visual Representation
+The process can be visualized as follows:
+
+1. DOM Tree:
+
+Includes all elements:
+
+     <html>
+       <head>
+       <body>
+          <div class="visible">
+          <div class="hidden">
+
+2.CSSOM Tree:
+
+Contains style rules:
+
+    .hidden { display: none; }
+    .visible { color: blue; font-size: 20px; }
+
+3.Render Tree:
+
+Combines visible elements and their styles:
+
+RenderNode for <div class="visible"> with computed styles:
+  Color: blue
+  Font-size: 20px
+
+In this example, the <div class="hidden"> is omitted from the Render Tree 
+due to its display: none style, 
+demonstrating how the Render Tree includes only elements that affect the visual output. -->
