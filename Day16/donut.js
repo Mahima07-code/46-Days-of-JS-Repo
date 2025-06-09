@@ -17,3 +17,4 @@ console.log(strawberryDonut instanceof Donut);   // true
 // 😋 Eating donuts (method from the constructor)
 chocoDonut.eat();         // Output: Yum! Eating a Chocolate donut 😋
 strawberryDonut.eat();    // Output: Yum! Eating a Strawberry donut 😋
+ 
