@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CustomEvent</title>
+</head>
+<body>
+    
+    <button id="fire">Fire Custom Event</button>
+    
+</body>
+</html>
+<script>
+  document.addEventListener("myCustomEvent", function (e) {
+    console.log("Custom event received:", e.detail);
+  });
+
+  document.getElementById("fire").addEventListener("click", () => {
+    const myEvent = new CustomEvent("myCustomEvent", {
+      detail: { username: "mahima007" }
+    });
+    document.dispatchEvent(myEvent);
+  });
+</script>
