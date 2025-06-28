@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Typing Speed Test</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .correct {
+      color: green;
+    }
+    .incorrect {
+      color: red;
+    }
+    .theme-colorful {
+      background: linear-gradient(to right, #667eea, #764ba2);
+      color: white;
+    }
+    .theme-colorful .quote-box {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    .theme-colorful .button {
+      background-color: #ffb347;
+      color: black;
+    }
+    .theme-colorful .button:hover {
+      background-color: #ffcc70;
+    }
+  </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex items-center justify-center transition duration-500" id="body">
+  <div class="max-w-3xl w-full p-8 bg-gray-800 rounded-2xl shadow-xl" id="container">
+    <div class="flex justify-between mb-4">
+      <h1 class="text-3xl font-bold">Typing Speed Test ⌨️</h1>
+      <button id="toggleTheme" class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-4 py-2 rounded">Theme</button>
+    </div>
+    <div id="quoteDisplay" class="quote-box text-xl text-gray-200 bg-gray-700 p-4 rounded-md mb-4 leading-relaxed"></div>
+    <textarea id="quoteInput" rows="4" class="w-full p-4 rounded-md text-black text-lg" placeholder="Start typing here..."></textarea>
+    <div class="flex justify-between items-center mt-4 text-lg">
+      <div>⏱️ Time: <span id="timer">0</span>s</div>
+      <div>💥 Mistakes: <span id="mistakes">0</span></div>
+      <div>⚡ WPM: <span id="wpm">0</span></div>
+    </div>
+    <button id="restartBtn" class="button mt-6 w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Restart</button>
+    <div class="text-center mt-4 text-sm text-gray-400">🏆 Best WPM: <span id="bestWPM">0</span></div>
+  </div>
+
+  <audio id="keySound" src="https://assets.mixkit.co/sfx/preview/mixkit-typewriter-soft-hit-1123.mp3"></audio>
+
+  <script>
+    const quoteDisplay = document.getElementById('quoteDisplay');
+    const quoteInput = document.getElementById('quoteInput');
+    const timer = document.getElementById('timer');
+    const mistakesSpan = document.getElementById('mistakes');
+    const wpmSpan = document.getElementById('wpm');
+    const restartBtn = document.getElementById('restartBtn');
+    const toggleTheme = document.getElementById('toggleTheme');
+    const body = document.getElementById('body');
+    const container = document.getElementById('container');
+    const bestWPM = document.getElementById('bestWPM');
+    const keySound = document.getElementById('keySound');
+
+    let startTime, interval;
+    let mistakes = 0;
+
+    const staticQuotes = [
+      "The quick brown fox jumps over the lazy dog.",
+      "JavaScript makes the web dynamic and powerful.",
+      "Typing fast requires daily practice and focus.",
+      "Stay calm and keep coding every day.",
+      "Clean code always wins the battle."
+    ];
+
+    function updateBestWPM(newWPM) {
+      const currentBest = localStorage.getItem('bestWPM') || 0;
+      if (newWPM > currentBest) {
+        localStorage.setItem('bestWPM', newWPM);
+        bestWPM.innerText = newWPM;
+      }
+    }
+
+    function loadBestWPM() {
+      bestWPM.innerText = localStorage.getItem('bestWPM') || 0;
+    }
+
+    function getRandomQuote() {
+      const quote = staticQuotes[Math.floor(Math.random() * staticQuotes.length)];
+      quoteDisplay.innerHTML = '';
+      quote.split('').forEach(char => {
+        const span = document.createElement('span');
+        span.innerText = char;
+        quoteDisplay.appendChild(span);
+      });
+      quoteInput.value = '';
+      mistakes = 0;
+      mistakesSpan.innerText = 0;
+      wpmSpan.innerText = 0;
+      timer.innerText = 0;
+      clearInterval(interval);
+    }
+
+    function startTimer() {
+      timer.innerText = 0;
+      startTime = new Date();
+      interval = setInterval(() => {
+        const seconds = Math.floor((new Date() - startTime) / 1000);
+        timer.innerText = seconds;
+      }, 1000);
+    }
+
+    quoteInput.addEventListener('input', () => {
+      keySound.currentTime = 0;
+      keySound.play();
+
+      const quoteSpans = quoteDisplay.querySelectorAll('span');
+      const input = quoteInput.value.split('');
+
+      let correct = true;
+      let mistakeCount = 0;
+
+      quoteSpans.forEach((char, index) => {
+        const typedChar = input[index];
+
+        if (!typedChar) {
+          char.classList.remove('correct', 'incorrect');
+          correct = false;
+        } else if (typedChar === char.innerText) {
+          char.classList.add('correct');
+          char.classList.remove('incorrect');
+        } else {
+          char.classList.add('incorrect');
+          char.classList.remove('correct');
+          mistakeCount++;
+          correct = false;
+        }
+      });
+
+      mistakesSpan.innerText = mistakeCount;
+
+      if (input.length === 1 && !interval) startTimer();
+
+      if (correct) {
+        clearInterval(interval);
+        const totalTime = Math.floor((new Date() - startTime) / 1000);
+        const words = quoteInput.value.trim().split(/\s+/).length;
+        const wpm = Math.round((words / totalTime) * 60);
+        wpmSpan.innerText = wpm;
+        updateBestWPM(wpm);
+      }
+    });
+
+    restartBtn.addEventListener('click', () => {
+      getRandomQuote();
+    });
+
+    toggleTheme.addEventListener('click', () => {
+      body.classList.toggle('theme-colorful');
+      container.classList.toggle('theme-colorful');
+    });
+
+    window.onload = () => {
+      loadBestWPM();
+      getRandomQuote();
+    };
+  </script>
+</body>
+</html>
