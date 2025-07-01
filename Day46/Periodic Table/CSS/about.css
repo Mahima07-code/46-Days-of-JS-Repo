@@ -1,84 +1,146 @@
-html, body {
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      height: 100%;
-    }
-    #about {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-      color: #fff;
-      display: flex;
-      height: 100vh;
-    }
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100vh;
+}
 
-    .about-container {
-      display: flex;
-      width: 100%;
-    }
-    
-    .about-img {
-      width: 55%;
-      height: 70%;
-      border-radius: .5rem;
-      object-fit: cover; /* or 'contain' depending on use */
-      display: block;
-      margin: 0 auto;
-      position: relative;
-      top: 50%;
-      transform: translateY(-50%);
-    }
+#about {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+  color: #fff;
+  display: flex;
+  min-height: 100vh;
+}
 
-    .about-left {
-      flex: 1;
-      min-height: 100vh;
-    }
+.about-container {
+  display: flex;
+  width: 100%;
+}
 
-    .about-right {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 3rem;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(6px);
-      border-radius: 0.5rem;
-    }
+.about-img {
+  width: 55%;
+  height: 70%;
+  border-radius: .5rem;
+  object-fit: cover;
+  /* or 'contain' depending on use */
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
 
-    .about-right h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      border-bottom: 2px solid #00ffff;
-      display: inline-block;
-    }
+.about-left {
+  flex: 1;
+  max-height: 100vh;
+}
 
-    .about-right p {
-      font-size: 1.1rem;
-      line-height: 1.6;
-    }
+.about-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3rem;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  border-radius: 0.5rem;
+}
 
-    .social-icons {
-      margin-top: 2rem;
-    }
+.about-right h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #00ffff;
+  display: inline-block;
+}
 
-    .social-icons a {
-      margin-right: 15px;
-      font-size: 1.8rem;
-      color: #00ffff;
-      transition: transform 0.3s ease;
-    }
+.about-right p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
 
-    .social-icons a:hover {
-      transform: scale(1.2);
-      color: #ffb703;
-    }
+.social-icons {
+  margin-top: 2rem;
+}
 
-    @media (max-width: 768px) {
-      .about-container {
-        flex-direction: column;
-      }
-      .about-left {
-        height: 250px;
-      }
-    }
+.social-icons a {
+  margin-right: 15px;
+  font-size: 1.8rem;
+  color: #00ffff;
+  transition: transform 0.3s ease;
+}
+
+.social-icons a:hover {
+  transform: scale(1.2);
+  color: #ffb703;
+}
+
+@media (max-width: 768px) {
+  .about-container {
+    flex-direction: column;
+  }
+
+  .about-left {
+    height: 250px;
+  }
+}
+
+
+
+
+@media (max-width: 768px) {
+  #table {
+    position: relative;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    padding: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    /* position: relative; */
+    /* Ensure proper positioning for alignment */
+  }
+
+  .table-wrapper {
+    display: inline-block;
+    white-space: nowrap;
+    vertical-align: top;
+  }
+
+  .f-block-wrapper-1 {
+    display: flex;
+    position: absolute;
+    /* align-items: center; */
+    /* Align content vertically */
+    /* margin-top: 1rem; */
+    padding-right: 10px;
+    padding-top: 65vh;
+    /* Adjust to align with the period labels */
+  }
+
+  .f-block-wrapper-2 {
+    display: flex;
+    position: absolute;
+    /* align-items: center; */
+    /* Align content vertically */
+    /* margin-top: 1rem; */
+    padding-right: 10px;
+    padding-top: 75vh;
+    /* Adjust to align with the period labels */
+  }
+
+  .f-label {
+    display: inline-block;
+    text-align: center;
+    margin-right: 10px;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+
+  .f-block-row {
+    display: inline-block;
+    white-space: nowrap;
+  }
+}
